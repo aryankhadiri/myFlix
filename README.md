@@ -40,4 +40,3 @@ Describe any challenges encountered while building the app.
 <img src="https://media.giphy.com/media/WRQLJCHLZLkEJ6neaD/giphy.gif" width=250><br>
 
 ### Notes
-Describe any challenges encountered while building the app.
