@@ -34,7 +34,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
               // TODO: Reload your table view data
             self.movies = dataDictionary["results"] as! [[String:Any]]
             self.tableView.reloadData() //it tells the tabledata to re run the two functions
-            print(self.movies)
 
            }
 
@@ -44,15 +43,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
@@ -73,4 +64,24 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.posterView.af_setImage(withURL: posterUrl)
         return cell
     }
+    
+    
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // find the selected movie
+        //the sender is the cell that has been tapped on
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for:cell)!
+        let movie = movies[indexPath.row]
+        
+        //pass the selected movie to the detailsviewcontroller
+        let detailsViewController = segue.destination as! MoviesDetailViewController
+        detailsViewController.movie = movie
+        tableView.deselectRow(at: indexPath, animated: true)//takes away the highlighted row when we come back
+        
+        print("New Screen")
+    }
+    
 }
